@@ -5,6 +5,7 @@ function loadFile(file, from) {
     })
     .then(data => {
       $(from).html(data);
+      codigoAInyectar();
     });
 }
 
@@ -63,6 +64,7 @@ function Home() {
   loadFile("../views/home.html", ".contenedor");
   loadFile("../views/home/network.html", "#NETWORK");
   loadFile("../views/home/configs.html", "#configs");
+  codigoAInyectar();
 }
 
 function Configuracion() {
@@ -71,36 +73,43 @@ function Configuracion() {
   loadFile("../views/configuracion/prt.html", "#PRT");
   loadFile("../views/configuracion/evo.html", "#EVO");
   loadFile("../views/configuracion/seguridad.html", "#SEGURIDAD");
+  codigoAInyectar();
 }
 
 function Network() {
   loadFile("../views/network.html", ".contenedor");
+  codigoAInyectar();
 }
 
 function Evogas() {
   loadFile("../views/evogas.html", ".contenedor");
+  codigoAInyectar();
 }
 
 function Monitoreo() {
   loadFile("../views/monitoreo.html", ".contenedor");
+  codigoAInyectar();
 }
 
 function Seguridad() {
   loadFile("../views/seguridad.html", ".contenedor");
+  codigoAInyectar();
 }
 
 function Firmware() {
   loadFile("../views/firmware.html", ".contenedor");
+  codigoAInyectar();
 }
 
 function Reboot() {
   loadFile("../views/reboot.html", ".contenedor");
+  codigoAInyectar();
 }
 
-$(window).bind("hashchange", function() {
+$(window).bind("hashchange", function () {
   getInit();
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   initLayouts();
 });

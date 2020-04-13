@@ -1,8 +1,9 @@
 <div class="jumbotron">
   <form>
+    <input type="hidden" class="form-control" id="a_1" name="a_1" value="DHCP" />
     <div class="form-group">
-      <label for="a_1">TIPO DE CONEXIÓN</label>
-      <select class="form-control" id="a_1" name="a_1" onchange="liberarRed()">
+      <label for="aaa_1">TIPO DE CONEXIÓN</label>
+      <select class="form-control" id="aaa_1" name="aaa_1" onchange="liberarRed()">
         <option value="DHCP">DHCP</option>
         <option value="ESTATICA">ESTATICA</option>
       </select>
@@ -32,7 +33,8 @@
       <input type="text" class="form-control" id="a_7" name="a_7" placeholder="" />
     </div>
     <div class="form-group">
-      <button type="button" class="btn btn-primary btn-lg" onclick="saveNetwork()">Guardar</button>
+      <button id="btn_a" type="button" class="btn btn-primary btn-lg" onclick="saveNetwork()">Guardar</button>
+      <center id="cnt_a" style="display: none;"><img src="./images/ajax-loader-barra.gif"></center>
     </div>
   </form>
 </div>
