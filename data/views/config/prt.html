@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <form>
+    <input type="hidden" class="form-control" id="b_5" name="b_5" placeholder="" />
+
+    <div class="form-group">
+      <label for="b_1">IMPRESORA</label>
+      <select class="form-control" id="b_1" name="b_1" onchange="liberarPRT()">
+        <option value="HABILITADA">HABILITADA</option>
+        <option value="DESHABILITADA">DESHABILITADA</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="b_b_1">
+      <label for="b_2">IP IMPRESORA</label>
+      <input type="text" class="form-control" id="b_2" name="b_2" placeholder="" />
+    </div>
+    <div class="form-group" id="b_b_2">
+      <label for="b_3">ID IMPRESORA</label>
+      <input type="text" class="form-control" id="b_3" name="b_3" placeholder="" />
+    </div>
+    <div class="form-group" id="b_b_3">
+      <label for="b_4">PUERTO IMPRESORA</label>
+      <input type="text" class="form-control" id="b_4" name="b_4" placeholder="" />
+    </div>
+    <div class="form-group">
+      <button id="btn_b" type="button" class="btn btn-primary btn-lg" onclick="savePRT()">Guardar</button>
+      <center id="cnt_b" style="display: none;"><img src="./images/ajax-loader-barra.gif"></center>
+    </div>
+  </form>
+</div>

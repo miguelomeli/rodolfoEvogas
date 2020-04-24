@@ -1,32 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es" class="h-100">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="EvoGas">
-    <meta name="author" content="Rodolfo Cazarez">
-    <meta name="generator" content="Rodolfo Cazarez">
-    <title>EvoGas</title>
-    <link href="//getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="theme-color" content="#563d7c">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="EVoGAS®" />
+    <meta name="author" content="Rodolfo Cazares" />
+    <meta name="generator" content="Rodolfo Cazares" />
+    <title>EVoGAS®</title>
+    <link href="//getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="theme-color" content="#563d7c" />
     <link href=./css/style.css " rel=" stylesheet ">
-</head>
-<body class=" d-flex flex-column h-100 ">
+  </head>
+  <body class=" d-flex flex-column h-100">
     <header></header>
     <br /><br /><br /><br />
-    <div class=" container-fluid ">
-        <div class=" row ">
-            <div class=" col-12 ">
-                <div class=" contenedor "></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="contenedor"></div>
             </div>
         </div>
     </div>
-    <footer id=" footer " class=" footer mt-auto py-3 "></footer>
+    <footer id=" footer " class="footer mt-auto py-3"></footer>
     <!-- <script src=" //code.jquery.com/jquery-3.4.1.slim.min.js "></script> -->
     <script src=" //code.jquery.com/jquery-3.4.1.min.js "></script>
     <script>
-        window.jQuery || document.write('<script src=" //getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js "><\/script>')
+        window.jQuery ||
+            document.write(
+                '<script src=" //getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js "><\/script>'
+            );
     </script>
     <script src=" //getbootstrap.com/docs/4.4/dist/js/bootstrap.bundle.min.js "></script>
     <script src=" ./js/inicio.js "></script>
@@ -35,10 +38,88 @@
     <script>
         function codigoAInyectar() {
             //Codigo a inyectar
-            a_1 = 'DHCP'
-            b_1 = 'rodo'
-            loadVarsInicio()
-        }    
+
+            //*
+            $.getJSON("/iconf.json", function (result) {
+                // data is the JSON string
+                if (result.conf !== undefined) {
+                    loadVarsInicio();
+                    // *****    VARIABLES INICIO     *****
+                    // *****            RED          *****
+                    x_1 = "tiempo modulo ON";
+                    x_2 = "Bytes Tx";
+                    x_3 = "Bytes Rx";
+                    x_4 = result.conf.SSID; // SSID
+                    x_5 = result.conf.passwordSSID; // Password SSID
+                    x_6 = result.conf.TipoIP; // Tipo IP ESTATICA/DHCP
+                    x_7 = result.conf.IP; // IP Actual
+                    x_8 = result.conf.GATEWAY; // GATEWAY Actual
+                    x_9 = result.conf.SUBMASK; // SUBMASK Actual
+                    x_10 = "MAC ADDRESS";
+                    x_11 = "WiFi";
+                    x_12 = result.conf.serverRemoto; // Servidor Remoto
+                    x_13 = result.conf.puertoServerRemoto; // Puerto Servidor Remoto
+                    x_14 = "Tiempo de conexion";
+                    // *****      CONFIGURACION      *****
+                    w_1 = result.conf.prt; // ESTATUS impresora
+                    w_2 = result.conf.IPPRT; // IP impresora
+                    w_3 = result.conf.IPID; // ID impresora
+                    w_4 = result.conf.IPPORT; // Puerto impresora
+                    w_5 = result.conf.serieEvo; // Numero de serie EVoGAS
+                    w_6 = result.conf.IDEvo; // Numero de unidad EVoGAS
+                    w_7 = result.conf.nombreEstacion; // Nombre de la estacion
+                    // ***********************************
+                    // ***** VARIABLES CONFIGURACION *****
+                    // *****            RED          *****
+                    a_1 = result.conf.TipoIP; // Tipo IP ESTATICA/DHCP
+                    a_2 = result.conf.IP; // IP modulo IP ESTATICA
+                    a_3 = result.conf.GATEWAY; // GATEWAY IP ESTATICA
+                    a_4 = result.conf.SUBMASK; // Submascara de red IP ESTATICA
+                    a_5 = result.conf.serverRemoto; // Servidor Remoto
+                    a_6 = result.conf.puertoServerRemoto; // Puerto Servidor Remoto
+                    a_7 = result.conf.URL; // url Servidor Remoto
+                    // *****            PRT          *****
+                    b_1 = result.conf.prt; // ESTATUS impresora
+                    b_5 = result.conf.prt; // ESTATUS impresora
+                    b_2 = result.conf.IPPRT; // IP impresora
+                    b_3 = result.conf.IPID; // ID impresora
+                    b_4 = result.conf.IPPORT; // Puerto impresora
+                    // *****          EVoGAS         *****
+                    c_1 = result.conf.serieEvo; // Numero de serie EVoGAS
+                    c_2 = result.conf.IDEvo; // Numero de unidad EVoGAS
+                    c_3 = result.conf.nombreEstacion; // Nombre de la estacion
+                    c_4 = result.conf.calleEstacion; // Domicilio de la estacion
+                    c_5 = result.conf.numeroEstacion; // ID Estacion
+                    // *****        SEGURIDAD        *****
+                    d_1 = result.conf.apName; // APName
+                    d_2 = result.conf.passWordAP; // Password APName
+                    d_3 = result.conf.usuarioEdit; // Usuario para entrar a edicion del FS
+                    d_4 = result.conf.claveEdit; // Password para entrar a edicion del FS
+                    d_5 = result.conf.clavePagina; // Password para entrar ala pagina
+
+                    // ***********************************
+
+                    loadVarsInicio();
+                }
+            });
+
+            //*/
+            /*
+                loadVarsInicio()
+    /*
+                x_2 = 'rodo'
+                a_1 = 'DHCP'
+                x_1 = 'DHCP'
+                x_2 = 'rodo'
+                w_1 = '192.168.1.59'                // IP Impresora
+                w_2 = 'impresora_diseno'            // ID Impresora
+                w_3 = '80'                          // Puerto de la impresora
+                w_4 = 'E-99-9999'                   // Serie EVoGAS
+                w_5 = '001'                         // Numero de unidad EVoGAS
+                w_6 = 'VOLCAN MOMOTOMBO 1225'       // Domicilio del sitio
+    */
+        }
     </script>
-</body>
+    </body>
+
 </html>
