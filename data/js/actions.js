@@ -3,9 +3,9 @@
 
 
 function liberarPRT() {
-    let _b_1 = $("#b_1").val();
+    let _b_1 = $("#bbb_1").val();
     if (_b_1 == 'HABILITADA') {
-        $("#b_5").val('HABILITADA');
+        $("#b_1").val('HABILITADA');
         $("#b_b_1").show();
         $("#b_b_2").show();
         $("#b_b_3").show();
@@ -13,7 +13,7 @@ function liberarPRT() {
         // $("#b_3").val('');
         // $("#b_4").val('');
     } else {
-        $("#b_5").val('DESHABILITADA');
+        $("#b_1").val('DESHABILITADA');
         $("#b_b_1").hide();
         $("#b_b_2").hide();
         $("#b_b_3").hide();
@@ -24,8 +24,8 @@ function liberarPRT() {
 
 
 function getPRT() {
-    let _b_5 = $("#b_5").val();
-    $("#b_1").val(_b_5);
+    let _b_1 = $("#bbb_1").val();
+    $("#bbb_1").val(_b_1);
     liberarPRT();
 }
 
@@ -77,6 +77,8 @@ function saveNetwork() {
     let _a_5 = $("#a_5").val();
     let _a_6 = $("#a_6").val();
     let _a_7 = $("#a_7").val();
+    let _a_8 = $("#a_8").val();
+    let _a_9 = $("#a_9").val();
     if (_a_1 == 'ESTATICA') {
         if (_a_2 == '') {
             alert("ingresa IP MODULO");
@@ -111,6 +113,17 @@ function saveNetwork() {
             return false;
         }
     */
+    if (_a_8 == '') {
+        alert("ingresa SSID");
+        $("#a_8").focus();
+        return false;
+    }
+    if (_a_9 == '') {
+        alert("ingresa CONTRASEÑA SSID");
+        $("#a_9").focus();
+        return false;
+    }
+
     $("#btn_a").hide();
     $("#cnt_a").show();
 
@@ -128,6 +141,8 @@ function saveNetwork() {
             "\",\"serverRemoto\":\"" + _a_5 +
             "\",\"puertoServerRemoto\":\"" + _a_6 +
             "\",\"URL\":\"" + _a_7 +
+            "\",\"SSID\":\"" + _a_8 +
+            "\",\"passwordSSID\":\"" + _a_9 +
             "\"}}\0",
         contentType: "application/json",
         success: function (datos) {
@@ -324,6 +339,8 @@ function saveSeguridad() {
     let _d_3 = $("#d_3").val();
     let _d_4 = $("#d_4").val();
     let _d_5 = $("#d_5").val();
+    let _d_6 = $("#d_6").val();
+
     if (_d_1 == '') {
         alert("ingresa NOMBRE AP");
         $("#d_1").focus();
@@ -349,6 +366,12 @@ function saveSeguridad() {
         $("#d_5").focus();
         return false;
     }
+    if (_d_6 == '') {
+        alert("ingresa CONTRASEÑA CLIENTES");
+        $("#d_6").focus();
+        return false;
+    }
+
     $("#btn_d").hide();
     $("#cnt_d").show();
     $.ajax({
@@ -363,6 +386,7 @@ function saveSeguridad() {
             "\",\"usuarioEdit\":\"" + _d_3 +
             "\",\"claveEdit\":\"" + _d_4 +
             "\",\"clavePagina\":\"" + _d_5 +
+            "\",\"claveClientes\":\"" + _d_6 +
             "\"}}\0",
         contentType: "application/json",
         success: function (datos) {
@@ -375,6 +399,431 @@ function saveSeguridad() {
             $("#btn_d").show();
             $("#cnt_d").hide();
             return false;
+        }
+    });
+    return false;
+}
+
+
+
+function CambiarContrasena() {
+    let pwd_1 = $("#pwd_1").val();
+    let pwd_2 = $("#pwd_2").val();
+    if (pwd_1 == '') {
+        alert("ingresa la contraseña supervisor");
+        $("#pwd_1").focus();
+        return false;
+    }
+    if (pwd_2 == '') {
+        alert("ingresa la confirmacion de contraseña");
+        $("#pwd_1").focus();
+        return false;
+    }
+    if (pwd_1 != pwd_2) {
+        alert("las contraseñas no son iguales");
+        $("#pwd_1").focus();
+        return false;
+    }
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/save",
+        global: true,
+        ifModified: false,
+        processData: true,
+        data: "{\"CFGclientesPSWSUP\":{\"pwd_1\":\"" + pwd_1 +
+            "\",\"pwd_2\":\"" + pwd_2 +
+            "\"}}\0",
+        contentType: "application/json",
+        success: function (datos) {
+            alert('datos guardados correctamente');
+        },
+        error: function (jqXHR, exception) {
+            alert('datos NO guardados');
+            return false;
+        }
+    });
+    return false;
+}
+
+
+
+
+function CambiarContrasenaAdministrador() {
+    let pwd_1 = $("#pwd_1").val();
+    let pwd_2 = $("#pwd_2").val();
+    if (pwd_1 == '') {
+        alert("ingresa la contraseña administrador");
+        $("#pwd_1").focus();
+        return false;
+    }
+    if (pwd_2 == '') {
+        alert("ingresa la confirmacion de contraseña");
+        $("#pwd_1").focus();
+        return false;
+    }
+    if (pwd_1 != pwd_2) {
+        alert("las contraseñas no son iguales");
+        $("#pwd_1").focus();
+        return false;
+    }
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/save",
+        global: true,
+        ifModified: false,
+        processData: true,
+        data: "{\"CFGclientesPSWADM\":{\"pwd_1\":\"" + pwd_1 +
+            "\",\"pwd_2\":\"" + pwd_2 +
+            "\"}}\0",
+        contentType: "application/json",
+        success: function (datos) {
+            alert('datos guardados correctamente');
+        },
+        error: function (jqXHR, exception) {
+            alert('datos NO guardados');
+            return false;
+        }
+    });
+    return false;
+}
+
+
+
+
+
+
+
+
+
+let jsonCliente = {};
+
+function BuscarCliente() {
+    let search_1 = $("#search_1").val();
+    if (search_1 == '') {
+        alert("ingresa el cliente");
+        $("#search_1").focus();
+        return false;
+    }
+
+    jsonCliente = {
+        TIPO_DE_CLIENTE: "VEHICULO",
+        PLACAS: "sadsadsa",
+        NUMERO_ECONOMICO: "6294",
+    };
+    codificarCliente();
+    return false;
+
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/clientes",
+        global: true,
+        ifModified: false,
+        processData: true,
+        data: "{\"CFGclientesSUP\":{\"cliente\":\"" + search_1 +
+            "\"}}\0",
+        contentType: "application/json",
+        success: function (d) {
+            if (d.cliente) {
+                jsonCliente = d;
+                codificarCliente();
+            } else {
+                $("#div_supervisor").html("");
+                alert('El cliente no existe');
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#div_supervisor").html("");
+            alert('El cliente no existe');
+            return false;
+        }
+    });
+    return false;
+}
+
+
+
+
+
+
+function BuscarClienteADM() {
+    let search_1 = $("#search_1").val();
+    if (search_1 == '') {
+        alert("ingresa el cliente");
+        $("#search_1").focus();
+        return false;
+    }
+    jsonCliente = {
+        TIPO_DE_CLIENTE: "VEHICULO",
+        PLACAS: "sadsadsa",
+        NUMERO_ECONOMICO: "6294",
+    };
+    codificarClienteADM();
+    return false;
+
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/clientes",
+        global: true,
+        ifModified: false,
+        processData: true,
+        data: "{\"CFGclientesADM\":{\"cliente\":\"" + search_1 +
+            "\"}}\0",
+        contentType: "application/json",
+        success: function (d) {
+            if (d.cliente) {
+                jsonCliente = d;
+                codificarClienteADM();
+            } else {
+                $("#div_admin").html("");
+                alert('El cliente no existe');
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#div_admin").html("");
+            alert('El cliente no existe');
+            return false;
+        }
+    });
+    return false;
+}
+
+
+
+
+
+function codificarCliente() {
+    let html = '<ul class="list-group">';
+    $.each(jsonCliente, function (key, value) {
+        html += `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                `+ key + `
+                <span class="badge badge-primary badge-pill">`+ value + `</span>
+            </li>
+        `;
+        //alert(key + ": " + value);
+    });
+    html += '</ul>';
+    $("#div_supervisor").html(html);
+}
+
+
+
+
+
+
+function codificarClienteADM() {
+    let html = '<div class="jumbotron"><form id="form_cliente_admin">';
+    $.each(jsonCliente, function (key, value) {
+        html += `
+            <div class="form-group">
+                <label for="`+ key + `">` + key + `</label>
+                <input type="text" class="form-control" id="`+ key + `" name="` + key + `" placeholder="` + key + `" value="` + value + `" />
+            </div>
+        `;
+        //alert(key + ": " + value);
+    });
+    html += `
+    <div class="form-group">
+      <button id="btn_d" type="button" class="btn btn-primary btn-lg" onclick="editarClienteAdmin()">Editar</button>
+    </div>    
+    `;
+    html += '</form></div>';
+    $("#div_admin").html(html);
+}
+
+
+function editarClienteAdmin() {
+
+    let jsonData = $("#form_cliente_admin").serializeToJSON({
+
+        // serialize the form using the Associative Arrays
+        associativeArrays: true,
+
+        // convert "true" and "false" to booleans true / false
+        parseBooleans: true,
+        parseFloat: {
+
+            // the value can be a string or function
+            condition: undefined,
+
+            // auto detect NaN value and changes the value to zero
+            nanToZero: true,
+
+            // return the input value without commas
+            getInputValue: function ($input) {
+                return $input.val().split(",").join("");
+            }
+        }
+
+    });
+
+    let jsonDataParse = JSON.stringify(jsonData);
+    console.log(jsonData);
+    console.log(jsonDataParse);
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/clientesEditar",
+        global: true,
+        ifModified: false,
+        processData: true,
+        //dataType: "json",
+
+        data: "{\"CFGclientesEditar\": " + jsonDataParse + "}\0",
+
+        //data: jsonData,
+        contentType: "application/json",
+        success: function (d) {
+            console.log(d);
+            if (d.indexOf('si') >= 0) {
+                $("#div_admin").html("");
+                $("#search_1").val("");
+                alert('El cliente se edito correctamente');
+            } else {
+                $("#div_admin").html("");
+                $("#search_1").val("");
+                alert('Ocurrio un error al editar el cliente');
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#div_admin").html("");
+            $("#search_1").val("");
+            alert('Ocurrio un error al editar el cliente');
+        }
+    });
+    return false;
+}
+
+
+
+function createClienteNuevoVehiculo() {
+    createClienteNuevo("VEHICULO");
+}
+
+function createClienteNuevoPersona() {
+    createClienteNuevo("PERSONA");
+}
+
+
+
+function createClienteNuevo(type) {
+    jsonCliente = {
+        TIPO_DE_CLIENTE: "",
+        PLACAS: "",
+        NUMERO_ECONOMICO: "",
+    };
+    codificarClienteNuevoADM();
+    return false;
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/clientes",
+        global: true,
+        ifModified: false,
+        processData: true,
+        data: "{\"CFGclientesADMNUEVO\":{\"type\":\"" + type + "\"}}\0",
+        contentType: "application/json",
+        success: function (d) {
+            if (d.cliente) {
+                jsonCliente = d;
+                codificarClienteNuevoADM();
+            } else {
+                $("#div_admin").html("");
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#div_admin").html("");
+            return false;
+        }
+    });
+    return false;
+}
+
+
+function codificarClienteNuevoADM() {
+    let html = '<div class="jumbotron"><form id="form_cliente_admin">';
+    $.each(jsonCliente, function (key, value) {
+        html += `
+            <div class="form-group">
+                <label for="`+ key + `">` + key + `</label>
+                <input type="text" class="form-control" id="`+ key + `" name="` + key + `" placeholder="` + key + `" value="` + value + `" />
+            </div>
+        `;
+        //alert(key + ": " + value);
+    });
+    html += `
+    <div class="form-group">
+      <button id="btn_d" type="button" class="btn btn-primary btn-lg" onclick="nuevoClienteAdmin()">Nuevo</button>
+    </div>    
+    `;
+    html += '</form></div>';
+    $("#div_admin").html(html);
+}
+
+
+
+
+function nuevoClienteAdmin() {
+
+    let jsonData = $("#form_cliente_admin").serializeToJSON({
+
+        // serialize the form using the Associative Arrays
+        associativeArrays: true,
+
+        // convert "true" and "false" to booleans true / false
+        parseBooleans: true,
+        parseFloat: {
+
+            // the value can be a string or function
+            condition: undefined,
+
+            // auto detect NaN value and changes the value to zero
+            nanToZero: true,
+
+            // return the input value without commas
+            getInputValue: function ($input) {
+                return $input.val().split(",").join("");
+            }
+        }
+
+    });
+
+    let jsonDataParse = JSON.stringify(jsonData);
+    console.log(jsonData);
+    console.log(jsonDataParse);
+    $.ajax({
+        async: true,
+        type: "POST",
+        url: "/clientesNuevo",
+        global: true,
+        ifModified: false,
+        processData: true,
+        //dataType: "json",
+
+        data: "{\"CFGclientesNuevo\": " + jsonDataParse + "}\0",
+
+        //data: jsonData,
+        contentType: "application/json",
+        success: function (d) {
+            console.log(d);
+            if (d.indexOf('si') >= 0) {
+                $("#div_admin").html("");
+                $("#search_1").val("");
+                alert('El cliente se guardo correctamente');
+            } else {
+                $("#div_admin").html("");
+                $("#search_1").val("");
+                alert('Ocurrio un error al guardar el cliente');
+            }
+        },
+        error: function (jqXHR, exception) {
+            $("#div_admin").html("");
+            $("#search_1").val("");
+            alert('Ocurrio un error al guardar el cliente');
         }
     });
     return false;

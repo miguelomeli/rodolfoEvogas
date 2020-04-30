@@ -8,11 +8,12 @@
     <meta name="author" content="Rodolfo Cazares" />
     <meta name="generator" content="Rodolfo Cazares" />
     <title>EVoGAS®</title>
-    <link href="//getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
     <meta name="theme-color" content="#563d7c" />
-    <link href=./css/style.css " rel=" stylesheet ">
-  </head>
-  <body class=" d-flex flex-column h-100">
+    <link href="./css/style.css" rel=" stylesheet ">
+</head>
+
+<body class=" d-flex flex-column h-100">
     <header></header>
     <br /><br /><br /><br />
     <div class="container-fluid">
@@ -23,18 +24,22 @@
         </div>
     </div>
     <footer id=" footer " class="footer mt-auto py-3"></footer>
-    <!-- <script src=" //code.jquery.com/jquery-3.4.1.slim.min.js "></script> -->
-    <script src=" //code.jquery.com/jquery-3.4.1.min.js "></script>
+    <script src="./js/jquery-3.4.1.min.js "></script>
     <script>
         window.jQuery ||
             document.write(
-                '<script src=" //getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js "><\/script>'
+                '<script src="./js/jquery.slim.min.js"><\/script>'
             );
     </script>
-    <script src=" //getbootstrap.com/docs/4.4/dist/js/bootstrap.bundle.min.js "></script>
-    <script src=" ./js/inicio.js "></script>
-    <script src=" ./js/funtions.js "></script>
-    <script src=" ./js/actions.js "></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+
+    <script src="./js/serializeToJSON.js "></script>
+
+
+
+    <script src="./js/inicio.js "></script>
+    <script src="./js/funtions.js "></script>
+    <script src="./js/actions.js "></script>
     <script>
         function codigoAInyectar() {
             //Codigo a inyectar
@@ -78,9 +83,11 @@
                     a_5 = result.conf.serverRemoto; // Servidor Remoto
                     a_6 = result.conf.puertoServerRemoto; // Puerto Servidor Remoto
                     a_7 = result.conf.URL; // url Servidor Remoto
+                    a_8 = result.conf.SSID; // SSID Servidor Remoto
+                    a_9 = result.conf.passwordSSID; // Contraseña SSID Servidor Remoto
                     // *****            PRT          *****
                     b_1 = result.conf.prt; // ESTATUS impresora
-                    b_5 = result.conf.prt; // ESTATUS impresora
+                    //                    b_5 = result.conf.prt; // ESTATUS impresora
                     b_2 = result.conf.IPPRT; // IP impresora
                     b_3 = result.conf.IPID; // ID impresora
                     b_4 = result.conf.IPPORT; // Puerto impresora
@@ -96,6 +103,8 @@
                     d_3 = result.conf.usuarioEdit; // Usuario para entrar a edicion del FS
                     d_4 = result.conf.claveEdit; // Password para entrar a edicion del FS
                     d_5 = result.conf.clavePagina; // Password para entrar ala pagina
+                    d_6 = result.conf.claveClientes; // Password para entrar ala pagina
+
 
                     // ***********************************
 
@@ -120,6 +129,6 @@
     */
         }
     </script>
-    </body>
+</body>
 
 </html>

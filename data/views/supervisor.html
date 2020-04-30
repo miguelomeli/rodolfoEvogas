@@ -1,0 +1,36 @@
+<h1 class="text-right">
+    <button type="button" class="btn btn-warning" onclick="cerrarSessionSupervisor()">Cerrar Session Supervisor</button>
+</h1>
+
+<h4>Cambio de Contraseña</h4>
+
+<div class="input-group mb-3">
+    <input id="pwd_1" name="pwd_1" type="password" class="form-control" placeholder="Ingresa la nueva contraseña"
+        aria-label="Ingresa la nueva contraseña" aria-describedby="button-addon2">
+
+</div>
+
+<div class="input-group mb-3">
+    <input id="pwd_2" name="pwd_2" type="password" class="form-control" placeholder="Confirma la nueva contraseña"
+        aria-label="Confirma la nueva contraseña" aria-describedby="button-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button" id="button-addon2" onclick="CambiarContrasena()">Cambiar
+            Contraseña</button>
+    </div>
+</div>
+
+<hr />
+
+<h4>Buscar Cliente</h4>
+
+<div class="input-group mb-3">
+    <input id="search_1" name="search_1" type="text" class="form-control" placeholder="Cliente" aria-label="Cliente"
+        aria-describedby="button-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-primary" type="button" id="button-addon2" onclick="BuscarCliente()">Buscar
+            Cliente</button>
+    </div>
+</div>
+
+
+<div id="div_supervisor"></div>
