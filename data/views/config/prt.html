@@ -1,6 +1,8 @@
 <div class="jumbotron">
   <form>
     <input type="hidden" class="form-control" id="b_1" name="b_1" placeholder="" />
+    <input type="hidden" class="form-control" id="b_5" name="b_5" placeholder="" />
+
 
     <div class="form-group">
       <label for="bbb_1">IMPRESORA</label>
@@ -9,6 +11,17 @@
         <option value="DESHABILITADA">DESHABILITADA</option>
       </select>
     </div>
+
+
+
+    <div class="form-group" id="b_b_5">
+      <label for="bbb_5">TIPO DE IMPRESORA</label>
+      <select class="form-control" id="bbb_5" name="bbb_5" onchange="liberarTipoImpresora()">
+        <option value="WEB">WEB</option>
+        <option value="SERIAL">SERIAL</option>
+      </select>
+    </div>
+
 
     <div class="form-group" id="b_b_1">
       <label for="b_2">IP IMPRESORA</label>
@@ -22,6 +35,28 @@
       <label for="b_4">PUERTO IMPRESORA</label>
       <input type="text" class="form-control" id="b_4" name="b_4" placeholder="" />
     </div>
+
+
+
+    <div class="form-group" id="b_b_6">
+      <label for="b_6">BAUD RATE</label>
+      <input type="text" class="form-control" id="b_6" name="b_6" placeholder="" />
+    </div>
+
+    <div class="form-group" id="b_b_7">
+      <label for="b_6">ENCABEZADO</label>
+      <textarea class="form-control" id="b_7" name="b_7" aria-label="With textarea" rows="6"></textarea>
+    </div>
+
+    <div class="form-group" id="b_b_8">
+      <label for="b_6">PIE DE PAGINA</label>
+      <textarea class="form-control" id="b_8" name="b_8" aria-label="With textarea" rows="6"></textarea>
+    </div>
+
+
+
+
+
     <div class="form-group">
       <button id="btn_b" type="button" class="btn btn-primary btn-lg" onclick="savePRT()">Guardar</button>
       <center id="cnt_b" style="display: none;"><img src="./images/ajax-loader-barra.gif"></center>

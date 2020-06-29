@@ -378,6 +378,7 @@ function loadVarsInicio() {
   $("#w_17").val(w_17);
   getNetwork();
   getPRT();
+  getImpresora();
 
 }
 

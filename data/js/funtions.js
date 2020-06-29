@@ -1,3 +1,43 @@
+
+function checkTokenTime() {
+  let ls = localStorage.getItem("token_time");
+  if (ls !== "undefined" && ls !== null) {
+    let anterior = parseFloat(ls);
+    let b = new Date();
+    let actual = parseFloat(b.getTime());
+    let minutos = 1800000;
+    //let minutos = 10000;
+
+
+
+
+    let d = anterior + minutos;
+
+    // console.log(d);
+    // console.log(actual);
+    // console.log("\n\n");
+
+
+    if (d <= actual) {
+      //console.log("refrescando");
+      localStorage.removeItem("token");
+      localStorage.removeItem("token_time");
+      localStorage.removeItem("token_clientes");
+      localStorage.removeItem("token_clientes_supervisor");
+      localStorage.removeItem("token_clientes_administrador");
+      window.location.href = "/#/";
+      addActive("inicio");
+      Home();
+    } else {
+      /*setTimeout(() => {
+        checkTokenTime();
+      }, 5000);
+      */
+    }
+  }
+}
+
+
 function loadFile(file, from) {
   fetch(file)
     .then(response => {
@@ -64,11 +104,6 @@ function getInit() {
     addActive("clientes");
     Administrador();
   }
-
-
-
-
-
 }
 
 function addActive(key) {
@@ -105,10 +140,13 @@ function CerrarSession() {
   let _c_ = confirm("Desea cerrar la session ?");
   if (_c_) {
     localStorage.removeItem("token");
+    localStorage.removeItem("token_time");
+
     localStorage.removeItem("token_clientes");
     localStorage.removeItem("token_clientes_supervisor");
     localStorage.removeItem("token_clientes_administrador");
     $("#loginSession").hide();
+    cT = false;
     checkLoginBtn();
     window.location.href = "/#/inicio";
   }
@@ -165,14 +203,34 @@ let cTCA = false;
 
 
 
+/******************************************************************************
+function checkTokenView()
+  Checa el password para el menu CONFIGURACION.
+  Envia el password capturado por el usuario a la URL /checkPassword
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/checkPassword", HTTP_POST, [](AsyncWebServerRequest *request)
 
+   entrada: -----
+   salida : si. Password correcto y habilita las funciones de la pestaña CONFIGURACION
+******************************************************************************/
 function checkTokenView() {
+  //  if(cTC == true) return false;
   let t = checkToken();
   if (t == true) {
     cT = true;
+    //checkTokenTime();
     return true;
   } else {
+
+    /*
+    let b = new Date();
+    let actual = parseFloat(b.getTime());
+    localStorage.setItem("token", "token");
+    localStorage.setItem("token_time", actual);
+    */
+
+
     let __c__ = prompt("Ingresa el password");
     if (__c__ == null || __c__ == "") {
       alert("Error no ingresaste un password");
@@ -191,7 +249,11 @@ function checkTokenView() {
           console.log(datos);
           if (datos.indexOf('si') >= 0) {
             cT = true;
+            let b = new Date();
+            let actual = parseFloat(b.getTime());
             localStorage.setItem("token", "token");
+            localStorage.setItem("token_time", actual);
+            //checkTokenTime();
             return true;
           } else {
             localStorage.removeItem("token");
@@ -220,9 +282,19 @@ function checkTokenView() {
   }
 }
 
+/******************************************************************************
+function checkTokenClientesView()
+  Checa el password para el menu CLIENTES->SUPERVISOR
+  Envia el password capturado por el usuario a la URL /checkPasswordClientes
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/checkPasswordClientes", HTTP_POST, [](AsyncWebServerRequest *request)
 
+   entrada: -----
+   salida : si. Password correcto y habilita las funciones de la pestaña CLIENTES
+******************************************************************************/
 function checkTokenClientesView() {
+  if (cT == true) return false;
   let t = checkTokenClientes();
   if (t == true) {
     cTC = true;
@@ -268,9 +340,17 @@ function checkTokenClientesView() {
   }
 }
 
+/******************************************************************************
+function checkTokenClientesView()
+  Checa el password para el menu CLIENTES->SUPERVISOR
+  Envia el password capturado por el usuario a la URL /checkPasswordClientesSupervisor
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/checkPasswordClientesSupervisor", HTTP_POST, [](AsyncWebServerRequest *request)
 
-
+   entrada: -----
+   salida : si. Password correcto y habilita las funciones de la pestaña CLIENTES SUPERVISOR
+******************************************************************************/
 function checkTokenClientesSuperisorView() {
   let t = checkTokenClientesSupervisor();
   if (t == true) {
@@ -318,7 +398,17 @@ function checkTokenClientesSuperisorView() {
   }
 }
 
+/******************************************************************************
+function checkTokenClientesAdministradorView()
+  Checa el password para el menu CLIENTES->ADMINISTRADOR
+  Envia el password capturado por el usuario a la URL /checkPasswordClientesAdministrador
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/checkPasswordClientesAdministrador", HTTP_POST, [](AsyncWebServerRequest *request)
+
+   entrada: -----
+   salida : si. Password correcto y habilita las funciones de la pestaña CLIENTES ADMINISTRADOR
+******************************************************************************/
 function checkTokenClientesAdministradorView() {
   let t = checkTokenClientesAdministrador();
   if (t == true) {
@@ -333,7 +423,7 @@ function checkTokenClientesAdministradorView() {
       $.ajax({
         async: false,
         type: "POST",
-        url: "/checkPasswordClientesSupervisor",
+        url: "/checkPasswordClientesAdministrador",
         global: true,
         ifModified: false,
         processData: true,
@@ -371,36 +461,59 @@ function checkTokenClientesAdministradorView() {
 
 
 // FUNCIONES DE ATENCION A LAS PAGINAS WEB
-function Home() {
+async function Home() {
   loadFile("../views/home.html", ".contenedor");
   loadFile("../views/home/network.html", "#NETWORK");
   loadFile("../views/home/configs.html", "#configs");
   //codigoAInyectar();
+
+
+  setTimeout(() => {
+    if ($("#rodolforefrescandohome").length > 0) {
+      //console.log("rodolforefrescandohome");
+      codigoAInyectar();
+      setTimeout(() => {
+        Home();
+      }, 1000);
+    }
+  }, 10000);
+
+
+
+
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function Configuracion() {
+  //console.log("puto 1");
   let t = checkTokenView();
   if (t == false) {
     window.location.href = "/#/inicio";
     return false;
   }
+
+  //console.log("puto 2");
+
   loadFile("../views/configuracion.html", ".contenedor");
   loadFile("../views/config/network.html", "#NETWORK");
   loadFile("../views/config/prt.html", "#PRT");
   loadFile("../views/config/evo.html", "#EVO");
   loadFile("../views/config/seguridad.html", "#SEGURIDAD");
+
+  //console.log("puto 3");
+
+  //console.log("aaa ");
+
   //codigoAInyectar();
+
+  //console.log("bbb");
+
+
+  setTimeout(() => {
+    //getImpresora();
+  }, 1500);//borrar
+
+
 }
 
 function Network() {
@@ -491,10 +604,12 @@ function Reboot() {
 function checkLoginBtn() {
   if (checkToken() == true) {
     $("#loginSession").show();
+    checkTokenTime();
     setTimeout(() => { checkLoginBtn(); }, 300);
     //return false;
   } else {
     $("#loginSession").hide();
+    checkTokenTime();
     setTimeout(() => { checkLoginBtn(); }, 300);
   }
 }
@@ -510,4 +625,33 @@ $(document).ready(function () {
   checkLoginBtn();
 });
 
+
+function checkLoginClientesBtn() {
+  if (checkTokenClientes() == true) {
+    $("#loginSessionClientes").show();
+    setTimeout(() => { checkLoginClientesBtn(); }, 300);
+
+  } else {
+    $("#loginSessionClientes").hide();
+    setTimeout(() => { checkLoginClientesBtn(); }, 300);
+  }
+}
+
+function CerrarSessionCliente() {
+  let _c_ = confirm("Desea cerrar la session ?");
+  if (_c_) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("token_clientes");
+    localStorage.removeItem("token_clientes_supervisor");
+    localStorage.removeItem("token_clientes_administrador");
+    $("#loginSessionClientes").hide();
+    window.location.href = "/#/inicio";
+  }
+  return false;
+}
+
+
+$(document).ready(async () => {
+  checkLoginClientesBtn();
+});
 

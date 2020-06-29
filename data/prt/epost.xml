@@ -1,0 +1,59 @@
+<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
+<text align="center"/>
+<logo key1="52" key2="52"/>
+<feed line="2"/>
+<text align="center"/>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>Estacion: </text>
+<command>48</command>
+<text>&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<command>4a</command>
+<text>&#10;&#10;</text>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>Pago en una sola exhibición&#10;&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<command>45</command>
+<text>&#10;</text>
+<text align="left"/>
+<text>Folio: </text>
+<command>49</command>
+<command>42</command>
+<text> - </text>
+<command>61</command>
+<text>&#10;Fecha: </text>
+<command>67</command>
+<text>        Hora: </text>
+<command>64</command>
+<text>&#10;****************************************&#10;</text>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>   CANT       DESCRIPCIÓN        PRECIO&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<text>****************************************&#10;</text>
+<command>62</command>
+<text>     Lts DIESEL         </text>
+<command>63</command>
+<text>&#10;****************************************&#10;</text>
+<text>                   SUB TOTAL </text>
+<command>46</command>
+<text>&#10;</text>
+<text>                         IVA </text>
+<command>47</command>
+<text>&#10;</text>
+<text>                       TOTAL </text>
+<command>68</command>
+<text>&#10;&#10;</text>
+<command>41</command>
+<text>&#10;</text>
+<text>&#10;Numero Economico: </text>
+<command>43</command>
+<text>&#10;</text>
+<text>&#10;Odometro: </text>
+<command>6d</command>
+<text>&#10;</text>
+<text>&#10;TAG: </text>
+<command>69</command>
+<text>&#10;&#10;Operador:&#10;</text>
+<feed line="2"/>
+<cut type="feed"/>
+</epos-print>

@@ -1,0 +1,32 @@
+<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
+<text align="center"/>
+<logo key1="52" key2="52"/>
+<feed line="2"/>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text dw="false" dh="true"/>
+<text>TOTALIZADORES&#10;</text>
+<text dw="false" dh="false"/>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<text>&#10;&#10;ESTACION: </text>
+<command>48</command>
+<text>&#10;</text>
+<text align="left"/>
+<text>&#10;           Fecha: </text>
+<command>67</command>
+<text>&#10;            Hora: </text>
+<command>64</command>
+<text>&#10;No. SERIE EVoGAS: </text>
+<command>66</command>
+<text>&#10;     ID POSICION: </text>
+<command>42</command>
+<text>&#10;           FOLIO: </text>
+<command>4e</command>
+<text>&#10;       HISTORICO: </text>
+<command>50</command>
+<text>&#10;          INICIO: </text>
+<command>4F</command>
+<text>&#10;           VENTA: </text>
+<command>51</command>
+<text>&#10;</text>
+<cut type="feed"/>
+</epos-print>

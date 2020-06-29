@@ -2,6 +2,8 @@
 
 
 
+
+// *********  ACCIONES DE LA PAGINA  CONFIGURACION --> XXX   ********* //
 function liberarPRT() {
     let _b_1 = $("#bbb_1").val();
     if (_b_1 == 'HABILITADA') {
@@ -9,19 +11,30 @@ function liberarPRT() {
         $("#b_b_1").show();
         $("#b_b_2").show();
         $("#b_b_3").show();
-        // $("#b_2").val('');
-        // $("#b_3").val('');
-        // $("#b_4").val('');
+        $("#b_b_4").show();
+        $("#b_b_5").show();
+
+        $("#b_b_5").show();
+        $("#b_b_6").show();
+        $("#b_b_7").show();
+        $("#b_b_8").show();
+
+
     } else {
         $("#b_1").val('DESHABILITADA');
         $("#b_b_1").hide();
         $("#b_b_2").hide();
         $("#b_b_3").hide();
+        $("#b_b_4").hide();
+        $("#b_b_5").hide();
+
+        $("#b_b_5").hide();
+        $("#b_b_6").hide();
+        $("#b_b_7").hide();
+        $("#b_b_8").hide();
+
     }
 }
-
-
-
 
 function getPRT() {
     let _b_1 = $("#bbb_1").val();
@@ -29,30 +42,22 @@ function getPRT() {
     liberarPRT();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getNetwork() {
     let _a_1 = $("#a_1").val();
     $("#aaa_1").val(_a_1);
     liberarRed();
 }
 
-
+function getImpresora() {
+    //console.log("getImpresora");
+    let _b_5 = $("#b_5").val();
+    if (_b_5 == '') {
+        _b_5 = 'WEB';
+    }
+    //console.log(_b_5);
+    $("#bbb_5").val(_b_5);
+    liberarTipoImpresora();
+}
 
 function liberarRed() {
     let _a_1 = $("#aaa_1").val();
@@ -68,6 +73,26 @@ function liberarRed() {
         $("#d_a_4").show().val('');
     }
 }
+
+
+function liberarTipoImpresora() {
+    let _b_5 = $("#bbb_5").val();
+    if (_b_5 == 'WEB') {
+        $("#b_5").val('WEB');
+        $("#b_b_1").show();
+        $("#b_b_2").show();
+        $("#b_b_3").show();
+        $("#b_b_6").hide();
+    } else {
+        $("#b_5").val('SERIAL');
+        $("#b_b_1").hide();
+        $("#b_b_2").hide();
+        $("#b_b_3").hide();
+        $("#b_b_6").show();
+    }
+}
+
+
 
 function saveNetwork() {
     let _a_1 = $("#a_1").val();
@@ -106,13 +131,6 @@ function saveNetwork() {
         $("#a_6").focus();
         return false;
     }
-    /*
-        if (_a_7 == '') {
-            alert("ingresa URL");
-            $("#a_7").focus();
-            return false;
-        }
-    */
     if (_a_8 == '') {
         alert("ingresa SSID");
         $("#a_8").focus();
@@ -123,10 +141,8 @@ function saveNetwork() {
         $("#a_9").focus();
         return false;
     }
-
     $("#btn_a").hide();
     $("#cnt_a").show();
-
     $.ajax({
         async: true,
         type: "POST",
@@ -158,42 +174,7 @@ function saveNetwork() {
         }
     });
     return false;
-
-    /*
-            async: true,
-            dataType: "json",
-            type: "POST",
-            url: "./",
-            data: {
-                key: 'Network',
-                a_1: _a_1,
-                a_2: _a_2,
-                a_3: _a_3,
-                a_4: _a_4,
-                a_5: _a_5,
-                a_6: _a_6,
-                a_7: _a_7,
-            },
-            global: true,
-            ifModified: false,
-            processData: true,
-            contentType: "application/x-www-form-urlencoded",
-            success: function (datos) {
-                alert('datos guardados correctamente');
-                $("#btn_a").show();
-                $("#cnt_a").hide();
-            },
-            error: function (jqXHR, exception) {
-                $("#btn_a").show();
-                $("#cnt_a").hide();
-                return false;
-            }
-        });
-        return false;
-    */
 }
-
-
 
 function savePRT() {
     let _b_1 = $("#b_1").val();
@@ -235,25 +216,11 @@ function savePRT() {
         global: true,
         ifModified: false,
         processData: true,
-
-        /*
-                dataType: "json",
-                data: {
-                    key: 'PRT',
-                    a_1: _b_1,
-                    a_2: _b_2,
-                    a_3: _b_3,
-                },
-                contentType: "application/x-www-form-urlencoded",
-        */
-        //        data: JSON.stringify("{\"a_1\":\"hola\",\"b_1\":\"mundo\"}"),
-        //        data: "{\"a_1\":\"hola\",\"b_1\":\"mundo\"}",
         data: "{\"CFGprt\":{\"prt\":\"" + _b_1 +
             "\",\"IPPRT\":\"" + _b_2 +
             "\",\"IPID\":\"" + _b_3 +
             "\",\"IPPORT\":\"" + _b_4 +
             "\"}}\0",
-
         contentType: "application/json",
         success: function (datos) {
             alert('datos guardados correctamente');
@@ -269,7 +236,6 @@ function savePRT() {
     });
     return false;
 }
-
 
 function saveEVO() {
     let _c_1 = $("#c_1").val();
@@ -340,7 +306,6 @@ function saveSeguridad() {
     let _d_4 = $("#d_4").val();
     let _d_5 = $("#d_5").val();
     let _d_6 = $("#d_6").val();
-
     if (_d_1 == '') {
         alert("ingresa NOMBRE AP");
         $("#d_1").focus();
@@ -362,7 +327,7 @@ function saveSeguridad() {
         return false;
     }
     if (_d_5 == '') {
-        alert("ingresa CONTRASEÑA PAGINA");
+        alert("ingresa CONTRASEÑA CONFIGURACION");
         $("#d_5").focus();
         return false;
     }
@@ -371,7 +336,6 @@ function saveSeguridad() {
         $("#d_6").focus();
         return false;
     }
-
     $("#btn_d").hide();
     $("#cnt_d").show();
     $.ajax({
@@ -385,7 +349,7 @@ function saveSeguridad() {
             "\",\"passWordAP\":\"" + _d_2 +
             "\",\"usuarioEdit\":\"" + _d_3 +
             "\",\"claveEdit\":\"" + _d_4 +
-            "\",\"clavePagina\":\"" + _d_5 +
+            "\",\"claveCfg\":\"" + _d_5 +
             "\",\"claveClientes\":\"" + _d_6 +
             "\"}}\0",
         contentType: "application/json",
@@ -403,9 +367,9 @@ function saveSeguridad() {
     });
     return false;
 }
+// ********* FIN ACCIONES DE LA PAGINA CONFIGURACION --> XXX ********* //
 
-
-
+// *********  ACCIONES DE LA PAGINA  CONFIGURACION --> XXX   ********* //
 function CambiarContrasena() {
     let pwd_1 = $("#pwd_1").val();
     let pwd_2 = $("#pwd_2").val();
@@ -445,9 +409,6 @@ function CambiarContrasena() {
     });
     return false;
 }
-
-
-
 
 function CambiarContrasenaAdministrador() {
     let pwd_1 = $("#pwd_1").val();
@@ -491,14 +452,18 @@ function CambiarContrasenaAdministrador() {
 
 
 
-
-
-
-
-
-
 let jsonCliente = {};
+/******************************************************************************
+function BuscarCliente()
+    Busca cliente en la memoria SDCard y lo muestra sin EDICION
+    Envia el password capturado por el usuario a la URL /clientes
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/clientes", HTTP_POST, [](AsyncWebServerRequest *request)
+
+   entrada: -----
+   salida : si. Password correcto y habilita las funciones de la pestaña CONFIGURACION
+******************************************************************************/
 function BuscarCliente() {
     let search_1 = $("#search_1").val();
     if (search_1 == '') {
@@ -506,15 +471,6 @@ function BuscarCliente() {
         $("#search_1").focus();
         return false;
     }
-
-    jsonCliente = {
-        TIPO_DE_CLIENTE: "VEHICULO",
-        PLACAS: "sadsadsa",
-        NUMERO_ECONOMICO: "6294",
-    };
-    codificarCliente();
-    return false;
-
     $.ajax({
         async: true,
         type: "POST",
@@ -522,11 +478,11 @@ function BuscarCliente() {
         global: true,
         ifModified: false,
         processData: true,
-        data: "{\"CFGclientesSUP\":{\"cliente\":\"" + search_1 +
+        data: "{\"ClientesSUP\":{\"cliente\":\"" + search_1 +
             "\"}}\0",
         contentType: "application/json",
         success: function (d) {
-            if (d.cliente) {
+            if (d) {
                 jsonCliente = d;
                 codificarCliente();
             } else {
@@ -543,11 +499,17 @@ function BuscarCliente() {
     return false;
 }
 
+/******************************************************************************
+function BuscarClienteADM()
+    Busca cliente en la memoria SDCard y lo muestra con EDICION
+    Envia el password capturado por el usuario a la URL /clientes
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/clientes", HTTP_POST, [](AsyncWebServerRequest *request)
 
-
-
-
+   entrada: -----
+   salida : si. Password correcto y habilita las funciones de la pestaña CONFIGURACION
+******************************************************************************/
 function BuscarClienteADM() {
     let search_1 = $("#search_1").val();
     if (search_1 == '') {
@@ -555,14 +517,6 @@ function BuscarClienteADM() {
         $("#search_1").focus();
         return false;
     }
-    jsonCliente = {
-        TIPO_DE_CLIENTE: "VEHICULO",
-        PLACAS: "sadsadsa",
-        NUMERO_ECONOMICO: "6294",
-    };
-    codificarClienteADM();
-    return false;
-
     $.ajax({
         async: true,
         type: "POST",
@@ -570,11 +524,11 @@ function BuscarClienteADM() {
         global: true,
         ifModified: false,
         processData: true,
-        data: "{\"CFGclientesADM\":{\"cliente\":\"" + search_1 +
+        data: "{\"ClientesADM\":{\"cliente\":\"" + search_1 +
             "\"}}\0",
         contentType: "application/json",
         success: function (d) {
-            if (d.cliente) {
+            if (d) {
                 jsonCliente = d;
                 codificarClienteADM();
             } else {
@@ -635,30 +589,33 @@ function codificarClienteADM() {
     $("#div_admin").html(html);
 }
 
+/******************************************************************************
+function editarClienteAdmin()
+    Envia los datos editados del cliente en CLIENTES->ADMINISTRADOR->EDITAR
+    Envia el password capturado por el usuario a la URL /clientesEditar
 
+  Se valida en la funcion InitServerU(void) del archivo MServer.cpp
+    server.on("/clientesEditar", HTTP_POST, [](AsyncWebServerRequest *request)
+
+   entrada: -----
+   salida : -----
+******************************************************************************/
 function editarClienteAdmin() {
-
     let jsonData = $("#form_cliente_admin").serializeToJSON({
-
         // serialize the form using the Associative Arrays
         associativeArrays: true,
-
         // convert "true" and "false" to booleans true / false
         parseBooleans: true,
         parseFloat: {
-
             // the value can be a string or function
             condition: undefined,
-
             // auto detect NaN value and changes the value to zero
             nanToZero: true,
-
             // return the input value without commas
             getInputValue: function ($input) {
                 return $input.val().split(",").join("");
             }
         }
-
     });
 
     let jsonDataParse = JSON.stringify(jsonData);
@@ -671,11 +628,7 @@ function editarClienteAdmin() {
         global: true,
         ifModified: false,
         processData: true,
-        //dataType: "json",
-
         data: "{\"CFGclientesEditar\": " + jsonDataParse + "}\0",
-
-        //data: jsonData,
         contentType: "application/json",
         success: function (d) {
             console.log(d);
@@ -698,26 +651,33 @@ function editarClienteAdmin() {
     return false;
 }
 
+/******************************************************************************
+function createClienteNuevoVehiculo()
 
-
+   entrada: -----
+   salida : -----
+******************************************************************************/
 function createClienteNuevoVehiculo() {
     createClienteNuevo("VEHICULO");
 }
 
+/******************************************************************************
+function createClienteNuevoPersona()
+
+   entrada: -----
+   salida : -----
+******************************************************************************/
 function createClienteNuevoPersona() {
     createClienteNuevo("PERSONA");
 }
 
+/******************************************************************************
+function createClienteNuevo(type)
 
-
+   entrada: -----
+   salida : -----
+******************************************************************************/
 function createClienteNuevo(type) {
-    jsonCliente = {
-        TIPO_DE_CLIENTE: "",
-        PLACAS: "",
-        NUMERO_ECONOMICO: "",
-    };
-    codificarClienteNuevoADM();
-    return false;
     $.ajax({
         async: true,
         type: "POST",
@@ -728,7 +688,7 @@ function createClienteNuevo(type) {
         data: "{\"CFGclientesADMNUEVO\":{\"type\":\"" + type + "\"}}\0",
         contentType: "application/json",
         success: function (d) {
-            if (d.cliente) {
+            if (d) {
                 jsonCliente = d;
                 codificarClienteNuevoADM();
             } else {
@@ -798,33 +758,32 @@ function nuevoClienteAdmin() {
     $.ajax({
         async: true,
         type: "POST",
-        url: "/clientesNuevo",
+        url: "/clientesEditar",
         global: true,
         ifModified: false,
         processData: true,
-        //dataType: "json",
-
-        data: "{\"CFGclientesNuevo\": " + jsonDataParse + "}\0",
-
-        //data: jsonData,
+        data: "{\"CFGclientesEditar\": " + jsonDataParse + "}\0",
         contentType: "application/json",
         success: function (d) {
             console.log(d);
             if (d.indexOf('si') >= 0) {
                 $("#div_admin").html("");
                 $("#search_1").val("");
-                alert('El cliente se guardo correctamente');
+                alert('El cliente se creo correctamente');
             } else {
                 $("#div_admin").html("");
                 $("#search_1").val("");
-                alert('Ocurrio un error al guardar el cliente');
+                alert('Ocurrio un error al crear el cliente');
             }
         },
         error: function (jqXHR, exception) {
             $("#div_admin").html("");
             $("#search_1").val("");
-            alert('Ocurrio un error al guardar el cliente');
+            alert('Ocurrio un error al crear el cliente');
         }
     });
     return false;
 }
+// ********* FIN ACCIONES DE LA PAGINA CONFIGURACION --> XXX ********* //
+
+// *********  ACCIONES DE LA PAGINA  CONFIGURACION --> XXX   ********* //

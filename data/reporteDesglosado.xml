@@ -1,0 +1,35 @@
+<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
+<text align="center"/>
+<logo key1="32" key2="32"/>
+<feed line="2"/>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text dw="false" dh="true"/>
+<text>CORTE DESGLOSADO&#10;</text>
+<text dw="false" dh="false"/>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<text>&#10;&#10;ESTACION:</text>
+<command>48</command>
+<text align="left"/>
+<text>&#10;Fecha </text>
+<command>67</command>
+<text>   Hora</text>
+<command>64</command>
+<text>&#10;No. SERIE EVoGAS </text>
+<command>66</command>
+<text>&#10;UNIDAD </text>
+<command>42</command>
+<text>&#10;&#10;FOLIO INICIAL </text>
+<command>4d</command>
+<text>&#10;FOLIO FINAL </text>
+<command>4e</command>
+<text>&#10;TOTALIZADOR INICIAL </text>
+<command>4f</command>
+<text>&#10;TOTALIZADOR FINAL </text>
+<command>50</command>
+<text>&#10;LITROS VENDIDOS </text>
+<command>51</command>
+<text>&#10;CONSECUTIVO DE CORTE </text>
+<command>52</command>
+<text>&#10;</text>
+<cut type="feed"/>
+</epos-print>

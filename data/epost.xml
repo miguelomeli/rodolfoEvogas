@@ -1,0 +1,71 @@
+<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print">
+<text align="center"/>
+<logo key1="32" key2="32"/>
+<feed line="2"/>
+<text align="center"/>
+<text>Distribuidora Mexicana de Gas LP SA de CV&#10;</text>
+<text>Carretera Lagos de Moreno Km 9&#10;</text>
+<text>Col. Lagos de Moreno.&#10;</text>
+<text>Lagos de Moreno, Jalisco, C.P. 47400&#10;</text>
+<text>RFC: DMG940126DL3&#10;</text>
+<text>Regimen General de Ley de Persona Moral&#10;&#10;</text>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>Estacion: </text>
+<command>48</command>
+<text>&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<command>4a</command>
+<text>&#10;&#10;</text>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>Pago en una sola exhibición&#10;&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<command>45</command>
+<text>&#10;</text>
+<text align="left"/>
+<text>Folio: </text>
+<command>49</command>
+<command>42</command>
+<text> - </text>
+<command>61</command>
+<text>&#10;Fecha: </text>
+<command>67</command>
+<text>        Hora: </text>
+<command>64</command>
+<text>&#10;****************************************&#10;</text>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>   CANT       DESCRIPCIÓN        PRECIO&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<text>****************************************&#10;</text>
+<command>62</command>
+<text>     Lts GAS LP         </text>
+<command>63</command>
+<text>&#10;****************************************&#10;</text>
+<text>                   SUB TOTAL </text>
+<command>46</command>
+<text>&#10;</text>
+<text>                         IVA </text>
+<command>47</command>
+<text>&#10;</text>
+<text>                       TOTAL </text>
+<command>68</command>
+<text>&#10;&#10;</text>
+<command>41</command>
+<text>&#10;&#10;&#10;Operador:&#10;&#10;&#10;</text>
+<text align="center"/>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>Guarde su nota para cualquier aclaración,&#10;</text>
+<text>es su garantía.&#10;</text>
+<feed line="2"/>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<text>Facturación: (443) 352- 4179&#10;</text>
+<text>Whatsapp Facturacion: (443) 369-1708&#10;</text>
+<text>Pedidos: (443) 324-6800&#10;</text>
+<text>Atencion a clientes: (443) 324-6900&#10;</text>
+<feed line="2"/>
+<text reverse="false" ul="false" em="true" color="color_1"/>
+<text>¡Ultragas agradece su preferencia!&#10;</text>
+<text reverse="false" ul="false" em="false" color="color_1"/>
+<text>Servicio, Rapidez y Confianza&#10;</text>
+<feed line="2"/>
+<cut type="feed"/>
+</epos-print>
